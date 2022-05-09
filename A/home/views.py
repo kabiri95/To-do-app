@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Todo
+from django.contrib import messages
 
 def home(request):
     all = Todo.objects.all()
@@ -13,4 +14,5 @@ def detail(request, todo_id):
 
 def delete(request, todo_id):
     Todo.objects.get(id=todo_id).delete()
+    messages.success(request, 'todo deleted successfully', extra_tags='success')
     return redirect('home')

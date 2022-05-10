@@ -5,4 +5,4 @@ class TodoCreateForm(forms.Form):
     title = forms.CharField()
     body = forms.CharField()
     created = forms.DateTimeField()
-    deadline = forms.DateTimeField()
+    deadline = forms.DateTimeField(required=False)

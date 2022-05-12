@@ -22,7 +22,10 @@ def create(request):
     if request.method == 'POST':
         form = TodoCreateForm(request.POST)
         if form.is_valid():
-            pass
+            cd = form.cleaned_data
+            Todo.objects.create(title=cd['title'], body=cd['body'], created=cd['created'], deadline=cd['deadline'])
+            messages.success(request, 'Todo created successfuly', 'success')
+            return redirect('home')
     else:
         form =TodoCreateForm()
     return render(request, 'create.html', {'form': form})
